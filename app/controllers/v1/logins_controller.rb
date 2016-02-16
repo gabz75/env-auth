@@ -2,23 +2,23 @@ class V1::LoginsController < ApplicationController
   before_action :authenticate!, except: [:create]
 
   def show
-    render current_login, status: :ok
+    render current_login, status: 200
   end
 
   def create
     @login = Login.new(login_params)
 
     if @login.save
-      render @login, status: :created
+      render json: serialize(@login), status: 201
     else
-      render ResponseError.new(@login), status: :unprocessable_entity
+      render json: ResponseError.new(@login), status: 400
     end
   end
 
   def destroy
     current_login.destroy
 
-    head :no_content
+    head 204
   end
 
   private

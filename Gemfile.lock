@@ -20,8 +20,6 @@ GEM
       erubis (~> 2.7.0)
       rails-dom-testing (~> 1.0, >= 1.0.5)
       rails-html-sanitizer (~> 1.0, >= 1.0.2)
-    active_model_serializers (0.9.4)
-      activemodel (>= 3.2)
     activejob (4.2.5.1)
       activesupport (= 4.2.5.1)
       globalid (>= 0.3.0)
@@ -39,6 +37,7 @@ GEM
       thread_safe (~> 0.3, >= 0.3.4)
       tzinfo (~> 1.1)
     arel (6.0.3)
+    bcrypt (3.1.10)
     binding_of_caller (0.7.2)
       debug_inspector (>= 0.0.1)
     builder (3.2.2)
@@ -46,6 +45,13 @@ GEM
     coderay (1.1.0)
     concurrent-ruby (1.0.0)
     debug_inspector (0.0.2)
+    devise (3.5.6)
+      bcrypt (~> 3.0)
+      orm_adapter (~> 0.1)
+      railties (>= 3.2.6, < 5)
+      responders
+      thread_safe (~> 0.1)
+      warden (~> 1.2.3)
     diff-lcs (1.2.5)
     erubis (2.7.0)
     factory_girl (4.5.0)
@@ -73,6 +79,8 @@ GEM
       rspec (>= 2.99.0, < 4.0)
     i18n (0.7.0)
     json (1.8.3)
+    jsonapi-serializers (0.6.0)
+      activesupport
     listen (3.0.6)
       rb-fsevent (>= 0.9.3)
       rb-inotify (>= 0.9.7)
@@ -93,6 +101,7 @@ GEM
       shellany (~> 0.0)
     oj (2.14.4)
     oj_mimic_json (1.0.1)
+    orm_adapter (0.5.0)
     pg (0.18.4)
     pry (0.10.3)
       coderay (~> 1.1.0)
@@ -129,6 +138,8 @@ GEM
     rb-fsevent (0.9.7)
     rb-inotify (0.9.7)
       ffi (>= 0.5.0)
+    responders (2.1.1)
+      railties (>= 4.2.0, < 5.1)
     rspec (3.4.0)
       rspec-core (~> 3.4.0)
       rspec-expectations (~> 3.4.0)
@@ -164,6 +175,8 @@ GEM
     thread_safe (0.3.5)
     tzinfo (1.2.2)
       thread_safe (~> 0.1)
+    warden (1.2.6)
+      rack (>= 1.0)
     web-console (2.3.0)
       activemodel (>= 4.0)
       binding_of_caller (>= 0.7.2)
@@ -174,10 +187,11 @@ PLATFORMS
   ruby
 
 DEPENDENCIES
-  active_model_serializers
   byebug
+  devise
   factory_girl_rails
   guard-rspec
+  jsonapi-serializers
   oj
   oj_mimic_json
   pg

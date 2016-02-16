@@ -2,10 +2,11 @@ source 'https://rubygems.org'
 
 gem 'rails', '4.2.5.1'
 gem 'pg'
-gem 'active_model_serializers'
+gem 'jsonapi-serializers'
 
 gem 'oj'
 gem 'oj_mimic_json'
+gem 'devise'
 
 # Use ActiveModel has_secure_password
 # gem 'bcrypt', '~> 3.1.7'

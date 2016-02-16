@@ -1,2 +1,3 @@
-class LoginSerializer < ActiveModel::Serializer
+class LoginSerializer < BaseSerializer
+  attributes :id, :email
 end

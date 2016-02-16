@@ -1,0 +1,2 @@
+class Unauthorized < StandardError
+end

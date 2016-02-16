@@ -1,3 +1,3 @@
-class SessionSerializer < ActiveModel::Serializer
-
+class SessionSerializer < BaseSerializer
+  attributes :id, :token
 end
