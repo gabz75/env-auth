@@ -1,6 +1,6 @@
-class AddDeviseToLogins < ActiveRecord::Migration
-  def self.change
-    create_table(:logins) do |t|
+class CreateLogins < ActiveRecord::Migration
+  def change
+    create_table :logins do |t|
       ## Database authenticatable
       t.string :email,              null: false, default: ""
       t.string :encrypted_password, null: false, default: ""

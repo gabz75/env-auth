@@ -1,19 +1,22 @@
 class V1::SessionsController < ApplicationController
   before_action :authenticate!, except: [:create]
-  before_action :find_login, only: [:create]
 
   def show
   end
 
   def create
-    unless current_login
-      return render json: { errors: 'unauthenticated' }, status: 400
-    end
+    @login = Login.find_by(email: session_params[:email])
 
-    if (new_session = current_login.sessions.create)
-      render json: new_session, status: 201
+    raise Unauthorized unless @login
+    raise Unauthorized unless @login.valid_password?(session_params[:password])
+
+    token = AuthToken.encode(id: @login.id)
+    session = @login.sessions.create(token: token)
+
+    if session
+      render json: serialize(session), status: 201
     else
-      render json: ResponseError.new(new_session), status: 400
+      raise Unauthorized
     end
   end
 
@@ -22,17 +25,9 @@ class V1::SessionsController < ApplicationController
 
   private
 
-  def find_login
-    login = Login.find_by!(
-      email: session_params[:email],
-      password: session_params[:password]
-    )
-
-    set_current_login(login)
-  end
-
   def session_params
-    params.require(:session).permit(:email, :password)
+    params.require(:session)
+          .permit(:email, :password)
   end
 
 end

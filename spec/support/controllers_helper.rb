@@ -3,6 +3,10 @@ module ControllersHelper
   end
 
   module InstanceMethods
+    def authenticate_request!(token)
+      request.headers['HTTP_AUTHORIZATION'] = "Bearer #{ token }"
+    end
+
     def json
       @json ||= JSON.parse(response.body).with_indifferent_access
     end

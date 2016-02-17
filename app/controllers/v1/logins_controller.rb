@@ -2,7 +2,7 @@ class V1::LoginsController < ApplicationController
   before_action :authenticate!, except: [:create]
 
   def show
-    render current_login, status: 200
+    render json: serialize(current_login), status: 200
   end
 
   def create

@@ -81,6 +81,7 @@ GEM
     json (1.8.3)
     jsonapi-serializers (0.6.0)
       activesupport
+    jwt (1.5.2)
     listen (3.0.6)
       rb-fsevent (>= 0.9.3)
       rb-inotify (>= 0.9.7)
@@ -192,6 +193,7 @@ DEPENDENCIES
   factory_girl_rails
   guard-rspec
   jsonapi-serializers
+  jwt
   oj
   oj_mimic_json
   pg
