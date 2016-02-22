@@ -1,6 +1,6 @@
-class CreateLogins < ActiveRecord::Migration
+class CreateAccounts < ActiveRecord::Migration
   def change
-    create_table :logins do |t|
+    create_table :accounts do |t|
       ## Database authenticatable
       t.string :email,              null: false, default: ""
       t.string :encrypted_password, null: false, default: ""
@@ -33,9 +33,9 @@ class CreateLogins < ActiveRecord::Migration
       t.timestamps null: false
     end
 
-    add_index :logins, :email,                unique: true
-    add_index :logins, :reset_password_token, unique: true
-    # add_index :logins, :confirmation_token,   unique: true
-    # add_index :logins, :unlock_token,         unique: true
+    add_index :accounts, :email,                unique: true
+    add_index :accounts, :reset_password_token, unique: true
+    # add_index :accounts, :confirmation_token,   unique: true
+    # add_index :accounts, :unlock_token,         unique: true
   end
 end

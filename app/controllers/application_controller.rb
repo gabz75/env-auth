@@ -1,21 +1,25 @@
-class ApplicationController < ActionController::Metal
-  abstract!
-
-  include AbstractController::Callbacks
-  include ActionController::RackDelegation
+class ApplicationController < ActionController::Base
+  include AbstractController::Rendering
+  include ActionController::Rendering
+  include ActionController::Renderers::All
   include ActionController::StrongParameters
-  include ActionController::Rescue
+  include ActionController::ForceSSL
+  include ActionController::Instrumentation
 
-  include Rendering
-  include Authentication
   include Serializer
+  include Authentication
+  # include Rendering
 
   rescue_from ActionController::ParameterMissing do |expection|
-    render json: ResponseError.new([expection.message]), status: 400
+    render json: serialize_error(expection.message), status: 400
+  end
+
+  rescue_from ActiveRecord::RecordNotFound do |expection|
+    render json: serialize_error(expection.message), status: 404
   end
 
   rescue_from Unauthorized do |expection|
-    render json: ResponseError.new([expection.message]), status: 401
+    render json: serialize_error(expection.message), status: 401
   end
 
 end

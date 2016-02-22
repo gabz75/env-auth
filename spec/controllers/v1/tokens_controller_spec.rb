@@ -1,10 +1,10 @@
 require 'spec_helper'
 require 'rails_helper'
 
-describe V1::SessionsController, type: :controller do
-  let!(:login) { create(:login) }
+describe V1::TokensController, type: :controller do
+  let!(:account) { create(:account) }
   let!(:credentials) do
-    { session: { email: login.email, password: login.password } }
+    { account: { email: account.email, password: account.password } }
   end
 
   describe '#create' do
@@ -16,7 +16,7 @@ describe V1::SessionsController, type: :controller do
     end
 
     it 'returns 401' do
-      post :create, { session: { email: 'wrong', password: 'wrong' }}
+      post :create, { account: { email: 'wrong', password: 'wrong' }}
 
       expect(response).to_not be_successful, response.body
       expect(response.status).to eq 401

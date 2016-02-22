@@ -1,10 +1,10 @@
-class CreateSessions < ActiveRecord::Migration
+class CreateTokens < ActiveRecord::Migration
   def change
-    create_table :sessions do |t|
+    create_table :tokens do |t|
       t.string :token
       t.string :string
       t.string :ip
-      t.belongs_to :login
+      t.belongs_to :account
 
       t.timestamps null: false
     end

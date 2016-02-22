@@ -9,9 +9,5 @@ module AuthToken
   def self.decode(token)
     decoded = JWT.decode(token, Rails.application.secrets.secret_key_base)
     HashWithIndifferentAccess.new(decoded[0])
-  rescue JWT::ExpiredSignature
-      raise Unauthorized
-  rescue JWT::VerificationError, JWT::DecodeError
-      raise Unauthorized
   end
 end

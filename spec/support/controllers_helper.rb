@@ -3,6 +3,10 @@ module ControllersHelper
   end
 
   module InstanceMethods
+    def header(key, value)
+      request.headers[key] = value
+    end
+
     def authenticate_request!(token)
       request.headers['HTTP_AUTHORIZATION'] = "Bearer #{ token }"
     end
